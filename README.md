@@ -1,2 +1,7 @@
 # Microservices-com-Spring-Cloud-Curso-ALura
-Microservices com Spring Cloud - Registry, Config Server e Distributed Tracing
+
+ ## Solução a ser implementada no curso:
+
+Criação três microsserviços: Fornecedor, Loja e Transportador
+- Uma apresentação da modelagem focado em DDD (Domain Driven Design)
+- Quebraremos o domínio em contextos menores (bounded context)
