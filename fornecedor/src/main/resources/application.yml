@@ -1,0 +1,12 @@
+
+server:
+  port: 8081
+
+spring:
+  datasource:
+    password: 
+    username: 
+    url: jdbc:postgresql://localhost:5433/fornecedor
+  jpa:
+    hibernate:
+      ddl-auto: validate
