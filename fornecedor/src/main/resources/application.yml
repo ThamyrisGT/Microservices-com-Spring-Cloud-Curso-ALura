@@ -6,8 +6,8 @@ spring:
   application:
     name: 'fornecedor'
   datasource:
-    password: 
-    username: 
+    password: root
+    username: postgres
     url: jdbc:postgresql://localhost:5433/fornecedor
   jpa:
     hibernate:
