@@ -1,17 +1,14 @@
 
-server:
-  port: 8081
-
 spring:
   application:
     name: 'fornecedor'
-  datasource:
-    password: root
-    username: postgres
-    url: jdbc:postgresql://localhost:5433/fornecedor
-  jpa:
-    hibernate:
-      ddl-auto: validate
+  profiles:
+    active: default
+  config:
+    import: configserver:http://localhost:8888
+      
+server:
+  port: 8081
    
 eureka:
   client:
