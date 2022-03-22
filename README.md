@@ -6,6 +6,7 @@ Criação três microsserviços: Fornecedor, Loja e Transportador
 - Uma apresentação da modelagem focado em DDD (Domain Driven Design)
 - Quebraremos o domínio em contextos menores (bounded context)
 
+## Tópicos importantes aprendidos:
 Integração entre microsserviços com RestTemplate
 - O RestTemplate do Spring permite chamadas HTTP de alto nível
 - Introdução ao Service discovery e Service registry
@@ -15,3 +16,21 @@ Integração entre microsserviços com RestTemplate
 - A implementação do service registry através do Eureka Server
 - Registro da Loja e do Fornecedor no Eureka Server
 - Resolução do IP/porta através do nome do microsserviço nas requisições, ou seja, os microsserviços não precisam conhecer o endereço IP das outras aplicações, mas apenas o nome que elas se registraram no Eureka.
+- Um servidor de configuração é o lugar central para definir as configurações dos serviços
+- Todas as configurações dos microsserviços devem ficar externalizadas e centralizadas
+- O Spring Config Server é uma implementação do servidor do projeto Spring Cloud
+- Sobre a integração dos microsserviços com o servidor de configuração:
+Para tal, devemos configurar o nome do microsserviço, profile e URL do Config Server
+e existem várias formas de definir um repositório de configurações, entre elas o GitHub
+
+## Curiosidade:
+O arquivo bootstrap.yml é carregado em um contexto com maior precedência, chamado de Bootstrap Application Context. É neste contexto que o Spring Cloud Config Client se conecta ao configuration server, baixa e disponibiliza as variáveis de ambiente para o Spring Application Context, que é o contexto da nossa aplicação. Porém a partir da versão Spring Boot 2.4 mudou sua funcionalidade padrão. Uma nova 
+spring.config.import propriedade é obrigatória. Sendo assim, o application.yml do fornecedor, com a solução não legada seria:
+
+spring:
+  application:
+    name: 'fornecedor'
+  profiles:
+    active: default
+  config:
+    import: configserver:http://localhost:8888
