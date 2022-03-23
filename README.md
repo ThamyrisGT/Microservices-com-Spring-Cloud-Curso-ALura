@@ -22,6 +22,14 @@ Integração entre microsserviços com RestTemplate
 - Sobre a integração dos microsserviços com o servidor de configuração:
 Para tal, devemos configurar o nome do microsserviço, profile e URL do Config Server
 e existem várias formas de definir um repositório de configurações, entre elas o GitHub
+- Client Side Load Balancing (CSLB) é o cliente HTTP que decide qual microsserviço recebe a requisição
+  - Pode ter várias instâncias do mesmo serviço no ar
+  - A configuração do CSLB é feita a partir da anotação @LoadBalanced, na criação do RestTemplate
+  - Como implementação do CSLB, usamos um projeto chamado Ribbon, que faz parte do Spring Cloud Netflix
+- Para descobrir quais clientes existem, podemos injetar a interface DiscoveryClient
+- Como alternativa ao RestTemplate, podemos usar o Spring Feign, que já usa o Ribbon para CSLB
+- O Spring Feign exige apenas uma interface, com a definição e mapeamento dos métodos que executarão a requisição
+  - Toda a implementação da interface é gerada pelo Spring Feign
 
 ## Curiosidade:
 O arquivo bootstrap.yml é carregado em um contexto com maior precedência, chamado de Bootstrap Application Context. É neste contexto que o Spring Cloud Config Client se conecta ao configuration server, baixa e disponibiliza as variáveis de ambiente para o Spring Application Context, que é o contexto da nossa aplicação. Porém a partir da versão Spring Boot 2.4 mudou sua funcionalidade padrão. Uma nova 
